@@ -10,7 +10,7 @@ import com.example.android.employeesdetails.R
 import com.example.android.employeesdetails.model.Employee
 
 class EmployeeAdapter(private val context:Context):RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
-    private val employeeList= emptyList<Employee>()
+    var employeeList: List<Employee> = emptyList()
 
     class EmployeeViewHolder (private val view: View): RecyclerView.ViewHolder(view){
         val employeeName:TextView= view.findViewById(R.id.tv_name)
