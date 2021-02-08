@@ -21,16 +21,17 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val args: DetailFragmentArgs by navArgs()
-    private lateinit var map:GoogleMap
+    private lateinit var map: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val employee = args.employee
@@ -38,15 +39,16 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         createMap()
     }
 
-    private fun createMap (){
+    private fun createMap() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
+
     override fun onMapReady(p0: GoogleMap?) {
-            if (p0 != null) {
-                map = p0
-                createMarker()
-            }
+        if (p0 != null) {
+            map = p0
+            createMarker()
+        }
     }
 
     private fun createMarker() {
@@ -63,7 +65,6 @@ class DetailFragment : Fragment(), OnMapReadyCallback {
         )
 
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

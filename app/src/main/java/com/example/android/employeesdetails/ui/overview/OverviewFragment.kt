@@ -54,7 +54,8 @@ class OverviewFragment : Fragment() {
         adapter = EmployeeAdapter(requireContext(), object : EmployeeAdapter.OnItemClick {
             override fun onItemClickListener(position: Int) {
                 val employee = adapter.employeeList[position]
-                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(employee)
+                val action =
+                    OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(employee)
                 findNavController().navigate(action)
             }
 
