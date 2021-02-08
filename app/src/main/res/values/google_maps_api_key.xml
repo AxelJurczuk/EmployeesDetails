@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="google_maps_api_key" translatable="false">AIzaSyB_TUq30DD4Ma-zQ-botDQIw3V39cKKokA</string>
+</resources>

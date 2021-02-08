@@ -31,7 +31,6 @@ class OverviewFragment : Fragment() {
             when (it) {
                 is Result.Success -> {
                     adapter.employeeList = it.resultList
-                    Log.i("lista", it.resultList.toString())
                     adapter.notifyDataSetChanged()
                 }
                 is Result.Failure -> Toast.makeText(
