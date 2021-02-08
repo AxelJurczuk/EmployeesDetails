@@ -1,4 +1,4 @@
-package com.example.android.employeesdetails.adapter
+package com.example.android.employeesdetails.ui.overview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.employeesdetails.R
 import com.example.android.employeesdetails.model.Employee
 
-class EmployeeAdapter(private val context:Context):RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
+class EmployeeAdapter(private val context:Context, private val clickListener:OnItemClick)
+    :RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
+
     var employeeList: List<Employee> = emptyList()
 
     class EmployeeViewHolder (private val view: View): RecyclerView.ViewHolder(view){
@@ -27,9 +29,14 @@ class EmployeeAdapter(private val context:Context):RecyclerView.Adapter<Employee
         val item = employeeList[position]
         holder.employeeName.text = item.name
         holder.employeeEmail.text = item.email
+        holder.itemView.setOnClickListener { clickListener.onItemClickListener(position) }
     }
 
     override fun getItemCount(): Int {
        return employeeList.size
+    }
+
+    interface OnItemClick{
+        fun onItemClickListener(position: Int)
     }
 }

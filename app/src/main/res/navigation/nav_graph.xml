@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/overviewFragment"
-        android:name="com.example.android.employeesdetails.ui.OverviewFragment"
+        android:name="com.example.android.employeesdetails.ui.overview.OverviewFragment"
         android:label="fragment_overview"
-        tools:layout="@layout/fragment_overview" />
+        tools:layout="@layout/fragment_overview" >
+        <action
+            android:id="@+id/action_overviewFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.android.employeesdetails.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="employee"
+            app:argType="com.example.android.employeesdetails.model.Employee" />
+    </fragment>
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.android.employeesdetails.viewmodel
+package com.example.android.employeesdetails.ui.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

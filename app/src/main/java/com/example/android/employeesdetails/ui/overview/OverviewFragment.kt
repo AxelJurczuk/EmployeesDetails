@@ -1,16 +1,17 @@
-package com.example.android.employeesdetails.ui
+package com.example.android.employeesdetails.ui.overview
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.android.employeesdetails.adapter.EmployeeAdapter
+import androidx.navigation.fragment.findNavController
 import com.example.android.employeesdetails.databinding.FragmentOverviewBinding
-import com.example.android.employeesdetails.viewmodel.EmployeeViewModel
 import com.example.android.employeesdetails.data.Result
 
 class OverviewFragment : Fragment() {
@@ -30,6 +31,7 @@ class OverviewFragment : Fragment() {
             when (it) {
                 is Result.Success -> {
                     adapter.employeeList = it.resultList
+                    Log.i("lista", it.resultList.toString())
                     adapter.notifyDataSetChanged()
                 }
                 is Result.Failure -> Toast.makeText(
@@ -50,7 +52,14 @@ class OverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = binding.recyclerView
-        adapter = EmployeeAdapter(requireContext())
+        adapter = EmployeeAdapter(requireContext(), object : EmployeeAdapter.OnItemClick {
+            override fun onItemClickListener(position: Int) {
+                val employee = adapter.employeeList[position]
+                val action = OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(employee)
+                findNavController().navigate(action)
+            }
+
+        })
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
     }
